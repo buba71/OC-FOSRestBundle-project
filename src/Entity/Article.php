@@ -27,7 +27,7 @@ class Article
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="author", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Author", cascade={"all"}, fetch="EAGER")
      */
     private $author;
 
