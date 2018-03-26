@@ -2,6 +2,8 @@
 fos_rest:
     body_converter:
         enabled: true
+        validate: true
+        validation_errors_argument: violations
     view:
         formats: { json: true, xml: false, rss: false}
         view_response_listener: true
@@ -10,6 +12,10 @@ fos_rest:
 
     serializer:
         serialize_null: true
+
+    exception:
+        enabled: true
+        codes: { App\Exception\ResourceValidationException: 400}
 
     format_listener:
         rules:

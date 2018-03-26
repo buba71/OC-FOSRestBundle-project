@@ -31,5 +31,9 @@ framework:
     serializer:
         enabled: true
 
+    templating:
+        engines: twig
+
+
 sensio_framework_extra:
     view: { annotations: true }
