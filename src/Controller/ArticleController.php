@@ -69,12 +69,11 @@ class ArticleController extends FOSRestController
      * )
      * @View()
      */
-    public function showArticle()
+    public function showArticle(EntityManagerInterface $entityManager, $id)
+
     {
-        $article = new Article();
-        $article
-            ->setTitle('Titre de mon premier article')
-            ->setContent('Le contenu de on premier article');
+        $article = $entityManager->getRepository(Article::class)->find($id);
+
 
         return $article;
 

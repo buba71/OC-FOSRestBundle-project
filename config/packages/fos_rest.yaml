@@ -7,6 +7,8 @@ fos_rest:
     view:
         formats: { json: true, xml: false, rss: false}
         view_response_listener: true
+        mime_types:
+            json: ['application/json', 'application/json;version=1.0', 'application/json;version=2.0']
 
     param_fetcher_listener: force
 
@@ -20,6 +22,13 @@ fos_rest:
     format_listener:
         rules:
             - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+
+    versioning:
+        enabled: true
+        resolvers:
+            media_type: # Accept header
+                enabled: true
+                regex: '/(v|version)=(?P<version>[0-9\.]+)/'
 #    param_fetcher_listener:  true
 #    allowed_methods_listener:  true
 #    routing_loader: true
