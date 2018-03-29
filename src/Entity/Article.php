@@ -22,6 +22,11 @@ use JMS\Serializer\Annotation as Serializer;
  *     embedded= @Hateoas\Embedded("expr(object.getAuthor())")
  * )
  *
+ *  @Hateoas\Relation(
+ *     "weather",
+ *     embedded = @Hateoas\Embedded("expr(service('app.weather').getCurrent())")
+ * )
+ *
  */
 class Article
 {
@@ -47,12 +52,6 @@ class Article
      * @Assert\NotBlank()
      */
     private $content;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Serializer\Since("2.0")
-     */
-    private $shortDescription;
 
     /**
      * @ORM\ManyToOne(targetEntity="Author", cascade={"all"}, fetch="EAGER")
@@ -87,24 +86,6 @@ class Article
 
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getShortDescription()
-    {
-        return $this->shortDescription;
-    }
-
-    /**
-     * @param mixed $shortDescription
-     */
-    public function setShortDescription($shortDescription): void
-    {
-        $this->shortDescription = $shortDescription;
-    }
-
-
 
     /**
      * @return mixed
